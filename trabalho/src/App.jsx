@@ -28,7 +28,7 @@ function App() {
   function concluirIdeia(id) {
     setIdeias(
       ideias.map((ideia) =>
-        ideia.id === id
+        ideia.id == id
           ? { ...ideia, concluida: !ideia.concluida }
           : ideia
       )
@@ -37,7 +37,7 @@ function App() {
 
   function removerIdeia(id) {
     setIdeias(
-      ideias.filter((ideia) => ideia.id !== id)
+      ideias.filter((ideia) => ideia.id != id)
     );
   }
 

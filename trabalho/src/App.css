@@ -2,10 +2,13 @@
 
 
 body {
-  margin: 0;
+  background-image:url(https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da846cddfa889a449cb8dfe68d68);
+  background-repeat: no-repeat;
+  background-position: center;
   font-family: Arial, sans-serif;
   background-color: #000000;
   color: #ff0000;
+  border: 10px solid #c40000;
 }
 
 div {

@@ -2,79 +2,99 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [ideias, setIdeias] = useState([]);
+  const [texto, setTexto] = useState("");
+  const [erro, setErro] = useState("");
 
- const [ideias, setIdeias] = useState([]);
- const [texto, setTexto] = useState("");
- const [erro, setErro] = useState("");
+  function adicionarIdeia(event) {
+    event.preventDefault();
 
- function adicionarIdeia(event) {
-  event.preventDefault();
+    if (!texto.trim()) {
+      setErro("Digite uma ideia.");
+      return;
+    }
 
-  if (!texto.trim()) {
-   setErro("Digite uma ideia.");
-   return;
+    const novaIdeia = {
+      id: Date.now(),
+      texto: texto,
+      concluida: false
+    };
+
+    setIdeias([...ideias, novaIdeia]);
+    setTexto("");
+    setErro("");
   }
 
-  const novaIdeia = {
-   id: Date.now(),
-   texto: texto,
-   concluida: false
-  };
+  function concluirIdeia(id) {
+    setIdeias(
+      ideias.map((ideia) =>
+        ideia.id === id
+          ? { ...ideia, concluida: !ideia.concluida }
+          : ideia
+      )
+    );
+  }
 
-  setIdeias([...ideias, novaIdeia]);
-  setTexto("");
-  setErro("");
- }
+  function removerIdeia(id) {
+    setIdeias(
+      ideias.filter((ideia) => ideia.id !== id)
+    );
+  }
 
- function concluirIdeia(id) {
-  setIdeias(
-   ideias.map((ideia) =>
-    ideia.id === id
-     ? { ...ideia, concluida: !ideia.concluida }
-     : ideia
-   )
+  const concluidas = ideias.filter(
+    (ideia) => ideia.concluida
+  ).length;
+
+  return (
+    <div>
+      <h1>Painel de Ideias</h1>
+
+      <form onSubmit={adicionarIdeia}>
+        <input
+          type="text"
+          value={texto}
+          onChange={(event) => setTexto(event.target.value)}
+          placeholder="Digite uma ideia"
+        />
+
+        <button type="submit">Adicionar</button>
+      </form>
+
+      {erro && <p>{erro}</p>}
+
+      <ul>
+        {ideias.map((ideia) => (
+          <li key={ideia.id}>
+            <input
+              type="checkbox"
+              checked={ideia.concluida}
+              onChange={() => concluirIdeia(ideia.id)}
+            />
+
+            <span
+              style={{
+                textDecoration: ideia.concluida
+                  ? "line-through"
+                  : "none"
+              }}
+            >
+              {ideia.texto}
+            </span>
+
+            <button
+              onClick={() => removerIdeia(ideia.id)}
+            >
+              Remover
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <p>
+        {ideias.length} ideias no painel · {concluidas} concluídas
+      </p>
+    </div>
   );
- }
-
- return (
-  <div>
-   <h1>Painel de Ideias</h1>
-
-   <form onSubmit={adicionarIdeia}>
-    <input
-     value={texto}
-     onChange={(event) => setTexto(event.target.value)}
-     placeholder="Digite uma ideia"
-    />
-
-    <button>Adicionar</button>
-   </form>
-
-   {erro && <p>{erro}</p>}
-
-   <ul>
-    {ideias.map((ideia) => (
-     <li key={ideia.id}>
-
-      <input
-       type="checkbox"
-       checked={ideia.concluida}
-       onChange={() => concluirIdeia(ideia.id)}
-      />
-
-      <span
-       style={{
-        textDecoration: ideia.concluida ? "line-through" : "none"
-       }}
-      >
-       {ideia.texto}
-      </span>
-
-     </li>
-    ))}
-   </ul>
-  </div>
- );
 }
 
 export default App;

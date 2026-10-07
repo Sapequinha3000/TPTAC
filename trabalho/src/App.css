@@ -1,8 +1,11 @@
+
+
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #e8f0fe;
-  color: #222;
+  background-color: #000000;
+  color: #ff0000;
 }
 
 div {
@@ -10,12 +13,12 @@ div {
 }
 
 h1 {
-  color: #000000;
+  color: #ff0000;
 }
 
 input {
   padding: 8px;
-  border: 1px solid #000000;
+  border: 1px solid rgb(184, 0, 0);
   border-radius: 5px;
 }
 
@@ -24,7 +27,7 @@ button {
   margin-left: 5px;
   border: none;
   border-radius: 5px;
-  background-color: #000000;
+  background-color: #440202;
   color: rgb(241, 2, 2);
   cursor: pointer;
 }
@@ -34,7 +37,7 @@ button:hover {
 }
 
 p {
-  color: #555;
+  color: #970000;
 }
 
 li {

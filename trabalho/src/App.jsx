@@ -75,7 +75,8 @@ function App() {
               style={{
                 textDecoration: ideia.concluida
                   ? "line-through"
-                  : "none"
+                  : "none",
+                color: ideia.concluida ? "blue" : "red"
               }}
             >
               {ideia.texto}

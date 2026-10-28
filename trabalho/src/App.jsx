@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div>
-      <h1>Painel de Ideias</h1>
+      <h1>PAINEL DE IDEIAS</h1>
 
       <form onSubmit={adicionarIdeia}>
         <input
@@ -76,7 +76,7 @@ function App() {
                 textDecoration: ideia.concluida
                   ? "line-through"
                   : "none",
-                color: ideia.concluida ? "blue" : "red"
+                color: ideia.concluida ? "crimson" : "red"
               }}
             >
               {ideia.texto}
